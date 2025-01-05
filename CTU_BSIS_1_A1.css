@@ -1,0 +1,708 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*Code*/
+.code-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.code-overlay.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+}
+
+.code-message {
+    position: relative;
+    background: rgba(51, 51, 51, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 114, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 114, 0, 0.2);
+}
+
+.code-message h2 {
+    margin-bottom: 20px;
+}
+
+.code-message input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.code-message button {
+    background: #ff7200;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.code-message p {
+    color: red;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+
+
+/*Thank you*/
+.thank-you-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.thank-you-overlay.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+}
+
+.thank-you-message {
+    position: relative;
+    background: rgba(51, 51, 51, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    color: white;
+    border: 1px solid rgba(255, 114, 0, 0.3);
+    box-shadow: 0 0 20px rgba(255, 114, 0, 0.2);
+}
+
+.thank-you-typewriter {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    min-height: 50px;
+    white-space: pre-wrap;
+}
+
+.breathe-button {
+    background: #ff7200;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 22px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: breathe 2s infinite ease-in-out;
+}
+
+.close-x {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    font-size: 40px;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-x:hover {
+    color: #ff7200;
+    transform: scale(1.2);
+}
+
+
+
+/* Main Web*/
+.main {
+    width: 100%;
+    background: linear-gradient(135deg,
+        rgba(155, 152, 152, 0.7),
+        rgba(0, 0, 0, 0.7)
+    ),
+    url('pics/Orange\ and\ yellow\ digital\ data\ and\ n.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+.navbar {
+    width: 1200px;
+    height: 75px;
+    margin: auto;
+}
+
+/* Moving orange line */
+.navbar::before {
+    content: '';
+    position: fixed; 
+    top: 0;
+    left: 50%; 
+    transform: translateX(-50%); 
+    width: 1200px; 
+    height: 2px; 
+    background: linear-gradient(90deg, transparent, #ff7200, transparent); /* Gradient effect */
+    animation: navGlow 3s linear infinite; 
+    transform: translateX(-100%); 
+}
+
+@keyframes navGlow {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%); 
+    }
+}
+
+.icon {
+    width: 200px;
+    float: left;
+    height: 70px;
+}
+
+.logo {
+    color: #ff7200;
+    font-size: 35px;
+    font-family: Arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px
+}
+
+/* Menu styling */
+.menu {
+    width: 400px;
+    float: left;
+    height: 70px;
+}
+
+ul {
+    float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul li {
+    list-style: none;
+    margin-left: 62px;
+    margin-top: 27px;
+    font-size: 14px;
+}
+
+ul li a {
+    text-decoration: none;
+    color: #fff; 
+    font-family: Arial;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out; 
+    position: relative; 
+}
+
+/* Hover effect for menu items */
+ul li a:hover {
+    color: #ff7200; 
+}
+
+/* Underline effect on hover */
+ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px; 
+    width: 0; 
+    height: 2px; 
+    background-color: #ff7200; 
+    transition: width 0.3s ease-in-out; 
+}
+
+ul li a:hover::after {
+    width: 100%; 
+}
+
+.search {
+    width: 315px;
+    float: left;
+    margin-left: 265px;
+    padding: 0;
+}
+
+.srch{
+    font-family: 'Times New Roman';
+    width: 200px;
+    height: 40px;
+    background: transparent;
+    border: 1px solid #ff7200;
+    margin-top: 13px;
+    color: #fff;
+    border-right: none;
+    font-size: 16px;
+    float: left;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.btn{
+    width: 100px;
+    height: 40px;
+    background: #ff7200;
+    border: 2px solid #ff7200;
+    margin-top: 13px;
+    color: #fff;
+    font-size: 15px;
+    border-bottom-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    transition: 0.2s ease;
+    cursor: pointer;
+}
+.btn:hover{
+    color: #000;
+}
+
+.btn:focus{
+    outline: none;
+}
+
+.srch:focus{
+    outline: none;
+}
+
+
+/* Header styling */
+.section-header {
+    text-align: center; 
+    font-size: 30px; 
+    font-weight: bold; 
+    color: #ff7200; 
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    transition: all 0.3s ease;
+    font-family: Arial;
+}
+
+.section-header:hover {
+    opacity: 0.8;
+    color: #ff7200;
+}
+
+
+/*Add Subject*/
+.add-subjects-btn {
+    margin-top: 10px; 
+    margin-left: 20px; 
+    display: flex; 
+    align-items: center; 
+    color: #fff; 
+}
+
+.add-subjects-text {
+    font-size: 18px;
+    margin-left: 10px; 
+    color: #ffffff; 
+    font-family: inherit; 
+    font-weight: bold; 
+    transition: color 0.3s ease; 
+    font-family: Arial;
+}
+
+.plus-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: #fff; 
+    background-color: #ff7200; /* Change the background color to orange */
+    border: 2px solid #ff7200; /* Change the border color to orange */
+    border-radius: 8px; 
+    width: 40px; 
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease; 
+    margin-left: 195px;
+}
+
+.plus-btn:hover {
+    transform: scale(1.1); 
+    box-shadow: 0 0 10px rgba(255, 114, 0, 0.5); 
+}
+
+
+
+
+/* Modal Styling - Add Subject */
+.add-subjects-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px; 
+    background: rgba(51, 51, 51, 0.95); 
+    border: 1px solid rgba(255, 114, 0, 0.3); 
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 114, 0, 0.2);
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+    display: none; 
+    overflow-y: auto; 
+}
+
+.modal-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.modal-header button {
+    background: #ff7200; /* Orange button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.modal-header button:hover {
+    background: #e65c00; /* Darker orange on hover */
+}
+
+.notification-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.subject-picture {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.subject-picture img {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.add-picture-btn {
+    background: #ff7200;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-picture-btn:hover {
+    background: #e65c00;
+}
+
+.subject-name,
+.website-app-used,
+.website-app-link,
+.updates,
+.notes-reminders {
+    margin-bottom: 20px;
+    margin-right: 15px;
+}
+
+.subject-name input,
+.website-app-used input,
+.website-app-link input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.updates textarea,
+.notes-reminders textarea {
+    width: 100%;
+    height: 80px;
+    padding: 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.finish-btn {
+    background: #ff7200;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.finish-btn:hover {
+    background: #e65c00;
+}
+
+
+
+/*Subject Done*/
+/* Subject Box Hover Effects */
+.subject-box {
+    background: rgba(51, 51, 51, 0.95); /* Dark background with transparency */
+    border: 1px solid rgba(255, 114, 0, 0.3); /* Orange border */
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 114, 0, 0.2); /* Glow effect */
+    color: white;
+    padding: 20px;
+    margin: 20px;
+    width: 500px;
+    float: right;
+    margin: 20px;
+    margin-right: 140px;
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.subject-box:hover {
+    transform: translateY(-5px); /* Move box up slightly */
+    box-shadow: 0 10px 30px rgba(255, 114, 0, 0.4); /* Stronger glow effect */
+    border-color: #ff7200; /* Brighter orange border on hover */
+}
+
+/* Buttons inside Subject Box (View, Update, Delete) */
+.subject-box .modal-header button {
+    background: #ff7200; /* Orange button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.3s ease; /* Smooth hover effect */
+}
+
+.subject-box .modal-header button:hover {
+    background: #e06e00; /* Darker orange on hover */
+    transform: translateY(-3px); /* Move button up slightly */
+    box-shadow: 0 5px 15px rgba(255, 114, 0, 0.3); /* Add shadow */
+}
+
+.subject-box .notification-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.subject-box .modal-content {
+    padding: 0 20px;
+}
+
+.subject-box .modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.subject-box .modal-content p {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+/* View modal styling */
+.view-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 650px;
+    max-height: 80vh; /* Limit height to 80% of viewport height */
+    background: rgba(51, 51, 51, 0.95);
+    border: 1px solid rgba(255, 114, 0, 0.3);
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(255, 114, 0, 0.2);
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto; /* Enable scrolling for overflow */
+}
+
+/* Close button (exit icon) */
+.view-modal .close-view-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    color: #ff7200;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.view-modal .close-view-modal:hover {
+    color: #ff4500; /* Darker orange on hover */
+}
+
+
+/* Modal header */
+.view-modal .modal-header {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Modal header buttons */
+.view-modal .modal-header button {
+    background: #ff7200; /* Orange button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s ease;
+}
+
+.view-modal .modal-header button:hover {
+    background: #ff4500; /* Darker orange on hover */
+}
+
+
+
+/* Modal content styling */
+.view-modal .modal-content p {
+    font-size: 18px;
+    line-height: 1.6; /* Improve readability */
+    white-space: pre-wrap; /* Preserve new lines and spaces */
+}
+
+.view-modal .modal-content h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ff7200; /* Orange color for the heading */
+}
+
+/* Strong text (labels) */
+.view-modal .view-modal-content p strong {
+    color: #ff7200; /* Orange color for labels */
+}
+
+.view-modal .view-modal-content p strong + p {
+    margin-top: 20px; /* Add spacing between labels and content */
+}
+
+
+
+/* Modal footer */
+.view-modal .modal-footer {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 114, 0, 0.3); /* Orange border */
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+.view-modal .modal-footer button {
+    background: #ff7200; /* Orange button */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.3s ease;
+}
+
+.view-modal .modal-footer button:hover {
+    background: #ff4500; /* Darker orange on hover */
+}
+
+/* Content styling */
+.content {
+    flex: 1; 
+    padding: 20px; 
+}
+
+
+/* Notification Icon Hover Effects */
+.notification-icon-container {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Smooth hover effect */
+}
+
+.notification-icon-container:hover {
+    transform: scale(1.2); /* Enlarge icon on hover */
+}
+
+.notification-icon-container:hover .notification-badge {
+    background-color: #ff4500; /* Darker red on hover */
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+    border-radius : 50%;
+    transition: background-color 0.3s; /* Smooth transition for badge color */
+}
+
+
+
+
+
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: #f0f0f0;
+    text-align: center;
+    padding: 15px;
+}

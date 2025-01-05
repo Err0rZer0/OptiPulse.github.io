@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiPulse</title>
+    <link rel="icon" href="pics/favicon.jpg" type="image/jpeg"> 
+    <link rel="stylesheet" href="Final.css">
+    
+</head>
+<body>
+
+<div class="navbar">
+    <div class="icon">
+        <h2 class="logo">OptiPulse</h2>
+    </div>
+
+    <button class="hamburger">
+        <span class="hamburger-lines"></span>
+        <span class="hamburger-lines"></span>
+        <span class="hamburger-lines"></span>
+    </button>
+
+    <div class="menu">
+        <ul>
+            <li><a href="index.html">HOME</a></li>
+            <li><a href="about.html">ABOUT</a></li>
+            <li><a href="services.html">SERVICE</a></li>
+            <li><a href="contacts.html">CONTACT</a></li>
+        </ul>
+    </div>
+
+    <div class="search">
+        <input class="srch" type="search" name="" placeholder="Type To text">
+        <button class="btn">Search</button>
+    </div>
+</div>
+
+<div class="code-overlay">
+    <div class="code-message">
+        <h2>Enter Code to Proceed</h2>
+        <input type="text" id="code-input" placeholder="Enter Code">
+        <button class="code-btn">Submit</button>
+        <p id="code-error"></p>
+    </div>
+</div>
+
+
+<div class="thank-you-overlay">
+    <div class="thank-you-message">
+        <div class="thank-you-typewriter">Thank you for your submission!</div>
+        <button class="breathe-button">Close</button>
+        <div class="close-x">×</div>
+    </div>
+</div>
+
+<!--Module-->
+<div class="module-container">
+    <button class="add-module-btn">+</button> <!-- Add button is now inside the module container -->
+    <div class="module-header">
+        <h2>
+            <a href="CTU_BSIS_1_A1.html" class="module-title-link">CTU: BSIS 1 - A1 STUDENT'S SUBJECT MANAGEMENT</a>
+        </h2>
+    </div>
+    <div class="module-content">
+        <!-- Module content will be displayed here -->
+    </div>
+</div>
+
+<!-- Add module popup -->
+<div class="add-module-popup" style="display: none;">
+    <div class="popup-content">
+        <h2>Adding a Module</h2>
+        <p>It seems you want to add a module, due to some constraints like the unavailability of personal accounts right now, to add a module you must directly communicate with us to add your module i.e the section you want to use.   </p>
+        <p> </p>
+        <p> </p>
+        <button class="close-popup-btn">Close</button>
+    </div>
+</div>
+
+<footer class="footer">
+    <p> 2024 OptiPulse. Empowering Students Everywhere.</p>
+</footer>
+
+<script>
+    const codeOverlay = document.querySelector('.code-overlay');
+    const codeInput = document.querySelector('#code-input');
+    const codeBtn = document.querySelector('.code-btn');
+    const codeError = document.querySelector('#code-error');
+    const correctCode = '0PT1PUL53_TEM'; // Pre-defined code
+
+    // Show the code overlay when the page loads
+    window.onload = function () {
+        codeOverlay.classList.add('active');
+    };
+
+    // Handle code submission
+    codeBtn.addEventListener('click', function () {
+        const enteredCode = codeInput.value.trim();
+        if (enteredCode === correctCode) {
+            codeOverlay.classList.remove('active'); // Remove the overlay
+            showThankYouMessage(); // Call the showThankYouMessage function
+        } else {
+            codeError.textContent = 'Incorrect code. Please try again.';
+        }
+    });
+    
+
+    //Thank you:
+    function showThankYouMessage() {
+    const overlay = document.createElement('div');
+    overlay.classList.add('thank-you-overlay');
+    overlay.innerHTML = `
+        <div class="thank-you-message">
+            <span class="close-x">&times;</span>
+            <div class="thank-you-typewriter">Thank you for purchasing the access to our website, please don't hesitate to contact us on our facebook page for more details or further inquiry.</div>
+            <button class="breathe-button">Contact Us on Facebook</button>
+        </div>
+    `;
+
+    document.body.appendChild(overlay);
+    setTimeout(() => {
+        overlay.classList.add('active');
+    }, 10); // Small delay to ensure the element is rendered
+
+    document.body.addEventListener('click', function(e) {
+        if (e.target.classList.contains('close-x')) {
+            overlay.remove();
+        } else if (e.target.classList.contains('breathe-button')) {
+            window.open('https://www.facebook.com/profile.php?id=61569899079543', '_blank');
+        }
+    });
+}
+
+
+
+    
+    //For the Module
+    // Get references to the button and popup
+    const addModuleBtn = document.querySelector('.add-module-btn');
+    const addModulePopup = document.querySelector('.add-module-popup');
+    const closePopupBtn = document.querySelector('.close-popup-btn');
+
+    // Add event listener to the "Add Module" button
+    addModuleBtn.addEventListener('click', () => {
+        addModulePopup.style.display = 'block'; // Show the popup
+        addModulePopup.classList.add('active'); // Add the active class
+    });
+
+    // Add event listener to the "Close" button inside the popup
+    closePopupBtn.addEventListener('click', () => {
+        addModulePopup.style.display = 'none'; // Hide the popup
+        addModulePopup.classList.remove('active'); // Remove the active class
+    });
+
+    // Optional: Close the popup when clicking outside of it
+    addModulePopup.addEventListener('click', (e) => {
+        if (e.target === addModulePopup) {
+            addModulePopup.style.display = 'none'; // Hide the popup
+            addModulePopup.classList.remove('active'); // Remove the active class
+        }
+    });
+</script>
+
+</body>
+</html>

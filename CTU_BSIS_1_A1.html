@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OptiPulse</title>
+    <link rel="icon" href="pics/favicon.jpg" type="image/jpeg"> 
+    <link rel="stylesheet" href="CTU_BSIS_1_A1.css">
+    
+</head>
+<body>
+
+<div class="main">
+    <div class="navbar">
+        <div class="icon">
+            <h2 class="logo">OptiPulse</h2>
+        </div>
+
+        <button class="hamburger">
+            <span class="hamburger-lines"></span>
+            <span class="hamburger-lines"></span>
+            <span class="hamburger-lines"></span>
+        </button>
+
+        <div class="menu">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="services.html">SERVICE</a></li>
+                <li><a href="contacts.html">CONTACT</a></li>
+            </ul>
+        </div>
+
+        <div class="search">
+            <input class="srch" type="search" name="" placeholder="Type To text">
+            <button class="btn">Search</button>
+        </div>
+    </div>
+
+    <!--CODE OVERLAY-->
+    <div class="code-overlay">
+        <div class="code-message">
+            <h2>Enter Code to Proceed</h2>
+            <input type="text" id="code-input" placeholder="Enter Code">
+            <button class="code-btn">Submit</button>
+            <p id="code-error"></p>
+        </div>
+    </div>
+
+    <!--THANKYOU OVERLAY-->
+    <div class="thank-you-overlay">
+        <div class="thank-you-message">
+            <div class="thank-you-typewriter">Thank you for your submission!</div>
+            <button class="breathe-button">Close</button>
+            <div class="close-x">×</div>
+        </div>
+    </div>
+
+    <!--TITLE OR HEADER-->
+    <div class="section-header">
+        CTU: BSIS 1-A1
+    </div>
+
+    <!-- Add subjects button -->
+    <div class="add-subjects-btn">
+        <button class="plus-btn">+</button>
+        <span class="add-subjects-text">Add subjects</span>
+    </div>
+
+    <!-- Pop-up modal for adding subjects -->
+    <div class="add-subjects-modal" style="display: none;">
+        <div class="modal-header">
+            <button class="view-btn">View</button>
+            <button class="update-btn">Update</button>
+            <i class="notification-icon">🔔</i>
+        </div>
+        <div class="modal-content">
+            <!-- Subject Picture -->
+            <div class="subject-picture">
+                <input type="file" id="upload-image" accept="image/*" style="display: none;">
+                <button class="add-picture-btn">Add Picture</button>
+            </div>
+
+            <!-- Subject Name -->
+            <div class="subject-name">
+                <input type="text" id="subject-name-input" placeholder="Subject Name">
+            </div>
+
+            <!-- Website/App Used -->
+            <div class="website-app-used">
+                <input type="text" id="website-app-used-input" placeholder="Website or App Used">
+            </div>
+
+            <!-- Website/App Link -->
+            <div class="website-app-link">
+                <input type="text" id="website-app-link-input" placeholder="Website or App Link">
+            </div>
+
+            <!-- Updates -->
+            <div class="updates">
+                <label for="updates-input">Updates:</label>
+                <textarea id="updates-input" placeholder="Enter updates..." rows="3"></textarea>
+                <div id="updates-output"></div>
+            </div>
+
+            <!-- Notes/Reminders -->
+            <div class="notes-reminders">
+                <label for="notes-reminders-input">Notes/Reminders:</label>
+                <textarea id="notes-reminders-input" placeholder="Enter notes or reminders..." rows="3"></textarea>
+                <div id="notes-reminders-output"></div>
+            </div>
+
+            <!-- Finish Button -->
+            <button class="finish-btn">Finish</button>
+        </div>
+    </div>
+
+    <!-- Subject box container -->
+    <div class="subject-box-container">
+        <!-- Subject box will be added here -->
+    </div>
+
+    <div class="content">
+        <!-- Your website content goes here -->
+    </div>
+    <footer class="footer">
+        <p>2024 OptiPulse. Empowering Students Everywhere.</p>
+    </footer>
+</div>
+
+</body>
+</html>
+
+
+
+<script>
+    const codeOverlay = document.querySelector('.code-overlay');
+    const codeInput = document.querySelector('#code-input');
+    const codeBtn = document.querySelector('.code-btn');
+    const codeError = document.querySelector('#code-error');
+    const correctCode = 'BSIS_2024_2025'; // Pre-defined code
+
+    // Show the code overlay when the page loads
+    window.onload = function () {
+        codeOverlay.classList.add('active');
+    };
+
+    // Handle code submission
+    codeBtn.addEventListener('click', function () {
+        const enteredCode = codeInput.value.trim();
+        if (enteredCode === correctCode) {
+            codeOverlay.classList.remove('active'); // Remove the overlay
+            showThankYouMessage(); // Call the showThankYouMessage function
+        } else {
+            codeError.textContent = 'Incorrect code. Please try again.';
+        }
+    });
+    
+
+    //Thank you:
+    function showThankYouMessage() {
+        const overlay = document.createElement('div');
+        overlay.classList.add('thank-you-overlay');
+        overlay.innerHTML = `
+            <div class="thank-you-message">
+                <span class="close-x">&times;</span>
+                <div class="thank-you-typewriter">IMPORTANT! Please read: This website is public, expect your fellow classmates to edit this chosen module/section. For further inquiries please contact our Facebook Page. Thank you.</div>
+                <button class="breathe-button">Contact Us on Facebook</button>
+            </div>
+        `;
+
+        document.body.appendChild(overlay);
+        setTimeout(() => {
+            overlay.classList.add('active');
+        }, 10); // Small delay to ensure the element is rendered
+
+        document.body.addEventListener('click', function(e) {
+            if (e.target.classList.contains('close-x')) {
+                overlay.remove();
+            } else if (e.target.classList.contains('breathe-button')) {
+                window.open('https://www.facebook.com/profile.php?id=61569899079543', '_blank');
+            }
+        });
+    }
+
+
+ 
+    // Load subjects from localStorage
+    let subjects = JSON.parse(localStorage.getItem('subjects')) || [];
+
+    // Render subjects on page load
+    function renderSubjects() {
+        const container = document.querySelector('.subject-box-container');
+        container.innerHTML = ''; // Clear the container
+        subjects.forEach((subject, index) => {
+            const subjectBox = document.createElement('div');
+            subjectBox.classList.add('subject-box');
+            subjectBox.innerHTML = `
+                <div class="modal-header">
+                    <button class="view-btn" data-index="${index}">View</button>
+                    <button class="update-btn" data-index="${index}">Update</button>
+                    <button class="delete-btn" data-index="${index}">Delete</button>
+                    <div class="notification-icon-container">
+                        <i class="notification-icon" data-index="${index}">🔔</i>
+                        ${subject.hasUpdate ? '<span class="notification-badge"></span>' : ''}
+                    </div>
+                </div>
+                <div class="modal-content">
+                    <h2>${subject.name}</h2>
+                    <p>Website/App Used: ${subject.websiteAppUsed}</p>
+                    <p>Website/App Link: ${subject.websiteAppLink}</p>
+                    <p>Updates: ${subject.updates}</p>
+                    <p>Notes/Reminders: ${subject.notesReminders}</p>
+                </div>
+            `;
+            container.appendChild(subjectBox);
+            addEventListenersToSubjectBox(subjectBox);
+        });
+    }
+
+    // Add event listeners to subject box
+    function addEventListenersToSubjectBox(subjectBox) {
+        const viewBtn = subjectBox.querySelector('.view-btn');
+        const updateBtn = subjectBox.querySelector('.update-btn');
+        const deleteBtn = subjectBox.querySelector('.delete-btn');
+        const notificationIcon = subjectBox.querySelector('.notification-icon');
+
+        // View button functionality
+        viewBtn.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            openViewModal(index);
+            clearNotification(index); // Clear notification when viewed
+        });
+
+        // Update button functionality
+        updateBtn.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            openUpdateModal(index);
+        });
+
+        // Delete button functionality
+        deleteBtn.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            deleteSubject(index);
+        });
+
+        // Notification icon functionality
+        notificationIcon.addEventListener('click', function () {
+            const index = this.getAttribute('data-index');
+            clearNotification(index); // Clear notification when icon is clicked
+        });
+    }
+
+    // Open view modal with subject data
+    function openViewModal(index) {
+        const subject = subjects[index];
+        const viewModal = document.createElement('div');
+        viewModal.classList.add('view-modal');
+        viewModal.innerHTML = `
+            <div class="view-modal-content">
+                <span class="close-view-modal">&times;</span>
+                <h2>${subject.name}</h2>
+                <p><strong>Website/App Used:</strong> ${subject.websiteAppUsed}</p>
+                <p><strong>Website/App Link:</strong> ${subject.websiteAppLink}</p>
+                <p><strong>Updates:</strong> ${subject.updates}</p>
+                <p><strong>Notes/Reminders:</strong> ${subject.notesReminders}</p>
+            </div>
+        `;
+
+        document.body.appendChild(viewModal);
+
+        // Close the view modal when the close button is clicked
+        const closeBtn = viewModal.querySelector('.close-view-modal');
+        closeBtn.addEventListener('click', function () {
+            viewModal.remove();
+        });
+
+        // Close the view modal when clicking outside the modal
+        window.addEventListener('click', function (event) {
+            if (event.target === viewModal) {
+                viewModal.remove();
+            }
+        });
+    }
+
+    // Open update modal with current data
+    function openUpdateModal(index) {
+        const subject = subjects[index];
+        document.getElementById('subject-name-input').value = subject.name;
+        document.getElementById('website-app-used-input').value = subject.websiteAppUsed;
+        document.getElementById('website-app-link-input').value = subject.websiteAppLink;
+        document.getElementById('updates-input').value = subject.updates;
+        document.getElementById('notes-reminders-input').value = subject.notesReminders;
+        document.querySelector('.finish-btn').setAttribute('data-index', index); // Store index for updating
+        document.querySelector('.add-subjects-modal').style.display = 'block'; // Show modal
+    }
+
+    // Delete a subject
+    function deleteSubject(index) {
+        if (confirm('Are you sure you want to delete this subject?')) {
+            subjects.splice(index, 1); // Remove the subject from the array
+            localStorage.setItem('subjects', JSON.stringify(subjects)); // Update localStorage
+            renderSubjects(); // Re-render the subjects
+        }
+    }
+
+    // Clear notification for a subject
+    function clearNotification(index) {
+        subjects[index].hasUpdate = false; // Set hasUpdate to false
+        localStorage.setItem('subjects', JSON.stringify(subjects)); // Update localStorage
+        renderSubjects(); // Re-render subjects to reflect changes
+    }
+
+    // Open modal for adding a new subject
+    document.querySelector('.plus-btn').addEventListener('click', function () {
+        document.querySelector('.add-subjects-modal').style.display = 'block';
+        document.querySelector('.finish-btn').removeAttribute('data-index'); // Clear index for new subject
+        document.getElementById('subject-name-input').value = '';
+        document.getElementById('website-app-used-input').value = '';
+        document.getElementById('website-app-link-input').value = '';
+        document.getElementById('updates-input').value = '';
+        document.getElementById('notes-reminders-input').value = '';
+    });
+
+    // Handle finish button click
+    document.querySelector('.finish-btn').addEventListener('click', function () {
+        const index = this.getAttribute('data-index'); // Fix: Added missing closing quote and parenthesis
+        const subjectName = document.getElementById('subject-name-input').value;
+        const websiteAppUsed = document.getElementById('website-app-used-input').value;
+        const websiteAppLink = document.getElementById('website-app-link-input').value;
+        const updates = document.getElementById('updates-input').value;
+        const notesReminders = document.getElementById('notes-reminders-input').value;
+
+        if (subjectName && websiteAppUsed && websiteAppLink) { // Validate required fields
+            if (index !== null) {
+                // Update existing subject
+                subjects[index] = {
+                    name: subjectName,
+                    websiteAppUsed: websiteAppUsed,
+                    websiteAppLink: websiteAppLink,
+                    updates: updates,
+                    notesReminders: notesReminders,
+                    hasUpdate: true // Set hasUpdate to true on update
+                };
+            } else {
+                // Create new subject
+                subjects.push({
+                    name: subjectName,
+                    websiteAppUsed: websiteAppUsed,
+                    websiteAppLink: websiteAppLink,
+                    updates: updates,
+                    notesReminders: notesReminders,
+                    hasUpdate: true // Set hasUpdate to true for new subject
+                });
+            }
+
+            // Save subjects to localStorage
+            localStorage.setItem('subjects', JSON.stringify(subjects));
+
+            // Render updated subjects
+            renderSubjects();
+
+            // Close the modal
+            document.querySelector('.add-subjects-modal').style.display = 'none';
+            document.querySelector('.finish-btn').removeAttribute('data-index'); // Clear index
+        } else {
+            alert('Please fill in all required fields (Name, Website/App Used, Website/App Link).');
+        }
+    });
+
+    // Initial render of subjects
+    renderSubjects();
+    
+
+
+
+    //View Modal Display Chuchu
+    function openViewModal(index) {
+        const subject = subjects[index];
+        const viewModal = document.createElement('div');
+        viewModal.classList.add('view-modal');
+        viewModal.innerHTML = `
+            <div class="view-modal-content">
+                <span class="close-view-modal">&times;</span>
+                <h2>${subject.name}</h2>
+                <p><strong>Website/App Used:</strong> ${subject.websiteAppUsed}</p>
+                <p><strong>Website/App Link:</strong> ${subject.websiteAppLink}</p>
+                <p><strong>Updates:</strong></p>
+                <p>${displayTextWithNewLines(subject.updates)}</p>
+                <p><strong>Notes/Reminders:</strong></p>
+                <p>${displayTextWithNewLines(subject.notesReminders)}</p>
+            </div>
+        `;
+
+        document.body.appendChild(viewModal);
+        setTimeout(() => {
+            viewModal.classList.add('active');
+        }, 10); // Small delay to allow the modal to render
+
+        // Close modal functionality
+        const closeModal = viewModal.querySelector('.close-view-modal');
+        closeModal.addEventListener('click', () => {
+            viewModal.classList.remove('active');
+            setTimeout(() => {
+                document.body.removeChild(viewModal);
+            }, 300); // Match the transition duration
+        });
+    }
+
+    // Function to display text with new lines
+    function displayTextWithNewLines(text) {
+        return text.replace(/\n/g, '<br>'); // Replace new lines with <br> tags
+    }
+
+    
+
+    // Helper function to format text with spaces and line breaks
+    function formatTextWithSpaces(text) {
+        if (!text) return ''; // Return empty string if text is null or undefined
+
+        // Add a space after periods, commas, and other punctuation marks
+        text = text.replace(/([.,!?])(\S)/g, '$1 $2');
+
+        // Replace double spaces with single spaces
+        text = text.replace(/\s+/g, ' ');
+
+        // Add line breaks after each sentence for better readability
+        const sentences = text.split('. ');
+        let formattedText = '';
+        sentences.forEach((sentence, index) => {
+            formattedText += sentence.trim() + '. ';
+            if (index === 0) {
+                formattedText += '<br><br>'; // Add extra line break after the first sentence
+            } else {
+                formattedText += '<br>'; // Add line break after each subsequent sentence
+            }
+        });
+
+        return formattedText.trim(); // Remove trailing spaces
+    }
+
+</script>
+
+</body>
+</html>
